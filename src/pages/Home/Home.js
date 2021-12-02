@@ -20,6 +20,9 @@ const Home = () => {
     const [selectBox, setSelectBox] = useState(false);
     const [selectCircle, setSelectCircle] = useState(false);
     const [selectTriangle, setSelectTriangle] = useState(false);
+    const [valueB, setValueB] = useState(false);
+    const [valueC, setValueC] = useState(false);
+    const [valueT, setValueT] = useState(false);
 
     const [indexB, setIndexB] = useState(0);
     const [indexC, setIndexC] = useState(0);
@@ -35,6 +38,7 @@ const Home = () => {
                 setIndexB(1);
                 setIndexC(0);
                 setIndexT(0);
+                setValueB(true);
             }
 
         }
@@ -50,6 +54,7 @@ const Home = () => {
                 setIndexC(1);
                 setIndexB(0);
                 setIndexT(0);
+                setValueC(true);
             }
 
         }
@@ -66,6 +71,7 @@ const Home = () => {
                 setIndexC(0);
                 setIndexB(0);
                 setIndexT(1);
+                setValueT(true);
             }
 
         }
@@ -105,18 +111,24 @@ const Home = () => {
         }
 
     }
+    const handleReset = () => {
+        setValueC(false);
+        setValueT(false);
+        setValueB(false);
+    }
 
     return (
         <div>
-            <div className="text-center">
-                <button onClick={handleArrange} className="btn bg-white">{arrange ? "Okay" : "Rearrange"}</button>
+            <div className="text-center mt-5">
+                <button onClick={handleArrange} className="btn bg-white me-3">{arrange ? "Okay" : "Rearrange"}</button>
+                <button onClick={handleReset} className="btn bg-white">Reset</button>
             </div>
 
-            <div className="box" style={{ top: `${boxCordination.a - 40}px`, zIndex: `${indexB}`, left: `${boxCordination.b - 40}px` }} onClick={handleBox}>
+            <div className={valueB ? "box" : "box1"} style={{ top: `${boxCordination.a - 40}px`, zIndex: `${indexB}`, left: `${boxCordination.b - 40}px` }} onClick={handleBox}>
             </div>
-            <div className="circle" style={{ top: `${circleCordination.a - 40}px`, zIndex: `${indexC}`, left: `${circleCordination.b - 40}px` }} onClick={handleCircle}></div>
+            <div className={valueC ? "circle" : "circle1"} style={{ top: `${circleCordination.a - 40}px`, zIndex: `${indexC}`, left: `${circleCordination.b - 40}px` }} onClick={handleCircle}></div>
 
-            <div className="triangle" style={{ top: `${triangleCordination.a - 40}px`, zIndex: `${indexT}`, left: `${triangleCordination.b - 40}px` }} onClick={handleTriangle}></div>
+            <div className={valueT ? "triangle" : "triangle1"} style={{ top: `${triangleCordination.a - 40}px`, zIndex: `${indexT}`, left: `${triangleCordination.b - 40}px` }} onClick={handleTriangle}></div>
         </div>
     );
 };
